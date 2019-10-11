@@ -22,3 +22,8 @@ class HashTable:
         for k in self.keys:
             if k == key:
                 return self.data[k]
+
+    def hash(self, key):
+        key = hash(key)
+        key = key % 33
+        return key
