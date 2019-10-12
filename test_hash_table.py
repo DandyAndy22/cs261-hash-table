@@ -69,33 +69,33 @@ class TestHashTable(unittest.TestCase):
     # Data Storage
     # """
 
-    # def test_data(self):
+    def test_data(self):
     #     """
     #     A HashTable has an internal array for storing k-v pairs.
     #     """
-    #     h = HashTable()
-    #     self.assertEqual(list, type(h.data))
+        h = HashTable()
+        self.assertEqual(list, type(h.data))
 
-    # def test_data_contents(self):
+    def test_data_contents(self):
     #     """
     #     A HashTable data array contains empty lists.
     #     """
-    #     h = HashTable(3)
-    #     expected = [ [], [], [] ]
-    #     self.assertEqual(expected, h.data)
+        h = HashTable(3)
+        expected = [ [], [], [] ]
+        self.assertEqual(expected, h.data)
 
     # """
     # Insertion Basics
     # """
 
-    # def test_insert_one(self):
+    def test_insert_one(self):
     #     """
     #     Inserting a k-v pair stores it as a two-element array in the list at
     #     the right index.
     #     """
-    #     h = HashTable(3)
-    #     h[11] = 'bar' # 11 is the key, not an index :)
-    #     self.assertEqual([[11, 'bar']], h.data[2])
+        h = HashTable(3)
+        h[11] = 'bar' # 11 is the key, not an index :)
+        self.assertEqual([[11, 'bar']], h.data[2])
 
     # """
     # Retrieval Basics

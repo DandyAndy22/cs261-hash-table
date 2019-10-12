@@ -10,13 +10,16 @@ class HashTable:
 
     def __init__(self, size=10):
         self.size = size
-        self.data = []
+        self.data = [[] for i in range(self.size)]
         self.keys = []
 
     def __setitem__(self, key, value):
-        #OR .append(value)
-        self.data = value
-        self.keys = key
+        key_value = [key, value]
+        hash_key = self.hash(key)
+
+
+        self.data.append(key_value)
+        self.keys.append(key)
     
     def __getitem__(self, key):
         for k in self.keys:
@@ -27,3 +30,5 @@ class HashTable:
         key = hash(key)
         key = key % 33
         return key
+
+    
