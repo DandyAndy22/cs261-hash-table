@@ -17,18 +17,22 @@ class HashTable:
         key_value = [key, value]
         hash_key = self.hash(key)
 
+        self.data[hash_key].append(key_value)
 
-        self.data.append(key_value)
         self.keys.append(key)
     
     def __getitem__(self, key):
-        for k in self.keys:
-            if k == key:
-                return self.data[k]
+        hash_key = self.hash(key)
+        key_value = self.data[hash_key]
+
+        for item in key_value:
+            if item[0] == key:
+                return item[1]
+
 
     def hash(self, key):
         key = hash(key)
-        key = key % 33
+        key = key % self.size
         return key
 
     
