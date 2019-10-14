@@ -11,16 +11,21 @@ class HashTable:
     def __init__(self, size=10):
         self.size = size
         self.data = [[] for i in range(self.size)]
-        self.keys = []
+        self.keyss = []
+        self.valuess = []
 
     def __setitem__(self, key, value):
         key_value = [key, value]
         hash_key = self.hash(key)
 
+        for  pair in self.data[hash_key]:
+            if pair[0] == key:
+                pair[1] = value 
+                return
         self.data[hash_key].append(key_value)
+        self.keyss.append(key)
+        self.valuess.append(value)
 
-        self.keys.append(key)
-    
     def __getitem__(self, key):
         hash_key = self.hash(key)
         key_value = self.data[hash_key]
@@ -29,10 +34,29 @@ class HashTable:
             if item[0] == key:
                 return item[1]
 
-
     def hash(self, key):
         key = hash(key)
         key = key % self.size
         return key
 
+    def delete(self, key):
+        hash_key = self.hash(key)
+        for  pair in self.data[hash_key]:
+            if pair[0] == key:
+                pair[1] = None
+                return
+
+    def clear(self):
+        self.data.clear()
+        self.data = [[] for i in range(self.size)]
+
+    def keys(self):
+        keys = []
+        return self.keyss
+
+    def values(self):
+        values = []
+        return self.valuess
+
     
+

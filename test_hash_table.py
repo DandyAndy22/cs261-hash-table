@@ -138,104 +138,104 @@ class TestHashTable(unittest.TestCase):
         h = HashTable(3)
         h[9] = 'foo' # Using numbers as keys for visibility.
         h[9] = 'bar'
-        print(h.data)
         self.assertEqual([[9, 'bar']], h.data[0])
 
-    # def test_insert_collision(self):
+    def test_insert_collision(self):
     #     """
     #     Inserting a k-v pair where the key has the same hash as an existing key
     #     appends the new k-v pair to the list at the appropriate index.
     #     """
-    #     h = HashTable(3)
-    #     h[9] = 'foo'
-    #     h[3] = 'bar'
-    #     self.assertEqual([[9, 'foo'], [3, 'bar']], h.data[0])
+        h = HashTable(3)
+        h[9] = 'foo'
+        h[3] = 'bar'
+        self.assertEqual([[9, 'foo'], [3, 'bar']], h.data[0])
 
     # """
     # Deletion
     # """
 
-    # def test_delete(self):
+    def test_delete(self):
     #     """
     #     A deleted k-v pair should not be retrievable.
     #     """
-    #     h = HashTable(3)
-    #     h['foo'] = 'bar'
-    #     h.delete('foo')
-    #     self.assertEqual(None, h['foo'])
+        h = HashTable(3)
+        h['foo'] = 'bar'
+        h.delete('foo')
+        self.assertEqual(None, h['foo'])
 
     # """
-    # Misc. Methods
+    # Misc. Methodsz
     # """
 
-    # def test_clear(self):
+    def test_clear(self):
     #     """
     #     A cleared HashTable has an empty data array.
     #     """
-    #     h = HashTable(3)
-    #     h['foo'] = 'bar'
-    #     h.clear()
-    #     self.assertEqual([[], [], []], h.data)
+        h = HashTable(3)
+        h['foo'] = 'bar'
+        h.clear()
+        self.assertEqual([[], [], []], h.data)
 
-    # def test_initial_keys(self):
+    def test_initial_keys(self):
     #     """
     #     A HashTable initially has no keys.
     #     """
-    #     h = HashTable()
-    #     self.assertEqual([], h.keys())
+        h = HashTable()
+        self.assertEqual([], h.keys())
 
-    # def test_keys(self):
+    def test_keys(self):
     #     """
     #     A HashTable can produce a list of its keys.
     #     """
-    #     h = HashTable()
-    #     h['foo'] = 'bar'
-    #     h['baz'] = 'qux'
-    #     keys = h.keys()
-    #     keys.sort()
-    #     self.assertEqual(['baz', 'foo'], keys)
+        h = HashTable()
+        h['foo'] = 'bar'
+        h['baz'] = 'qux'
+        keys = h.keys()
+        keys.sort()
+        print(h.keys)
+        self.assertEqual(['baz', 'foo'], keys)
 
 
-    # def test_initial_values(self):
+    def test_initial_values(self):
     #     """
     #     A HashTable initially has no values.
     #     """
-    #     h = HashTable(3)
-    #     self.assertEqual([], h.values())
+        h = HashTable(3)
+        self.assertEqual([], h.values())
 
-    # def test_values(self):
+    def test_values(self):
     #     """
     #     A HashTable can produce a list of its values.
     #     """
-    #     h = HashTable()
-    #     h['foo'] = 'bar'
-    #     h['baz'] = 'qux'
-    #     values = h.values()
-    #     values.sort()
-    #     self.assertEqual(['bar', 'qux'], values)
+        h = HashTable()
+        h['foo'] = 'bar'
+        h['baz'] = 'qux'
+        values = h.values()
+        values.sort()
+        self.assertEqual(['bar', 'qux'], values)
 
     # """
     # Time complexity
     # """
 
-    # def test_retrieval_is_constant_time(self):
+    def test_retrieval_is_constant_time(self):
     #     """
     #     Retrieving a value from a dictionary should take the same amount of time
     #     no matter how many k-v pairs it contains. It should be O(... what?)
     #     """
-    #     time_samples = []
-    #     key = fake_key()
-    #     value = fake_value()
-    #     # Create a small hash table with just one k-v in it.
-    #     small_table = HashTable()
-    #     small_table[key] = value
-    #     # Create a large hash table with 20,000 k-vs in it.
-    #     large_table = HashTable(20000)
-    #     for _ in range(10000):
-    #         large_table[fake_key()] = fake_value()
-    #     large_table[key] = value
-    #     for _ in range(9999):
-    #         large_table[fake_key()] = fake_value()
+        time_samples = []
+        key = fake_key()
+        value = fake_value()
+        # Create a small hash table with just one k-v in it.
+        small_table = HashTable()
+        small_table[key] = value
+        # Create a large hash table with 20,000 k-vs in it.
+        large_table = HashTable(20000)
+        for _ in range(10000):
+            large_table[fake_key()] = fake_value()
+        large_table[key] = value
+        for _ in range(9999):
+            large_table[fake_key()] = fake_value()
     #     # Calculate the average retrieval time for both small and large tables
     #     small_average_elapsed_time = average_retrieval_time(small_table, key)
     #     large_average_elapsed_time = average_retrieval_time(large_table, key)
@@ -245,22 +245,22 @@ class TestHashTable(unittest.TestCase):
     #         large_average_elapsed_time,\
     #         delta=small_average_elapsed_time*2) # Just a small amount, the 2 isn't significant.
 
-    # def test_constant_retrieval_order(self):
+    def test_constant_retrieval_order(self):
     #     """
     #     Retrieving a value using the first-used key and the most recently-used
     #     key should be in constant time. (Order shouldn't matter.)
     #     """
     #     # Create a hash table with 20,000 entries in it.
-    #     h = HashTable(20000)
-    #     first_key = fake_key()
-    #     last_key = fake_key()
-    #     h[first_key] = fake_value()
-    #     for _ in range(19998):
-    #         h[fake_key()] = fake_value()
-    #     h[last_key] = fake_value()
-    #     # Calculate the average retrieval time for the first key and last key.
-    #     first_key_value_average_retrieval_time = average_retrieval_time(h, first_key)
-    #     last_key_value_average_retrieval_time = average_retrieval_time(h, last_key)
+        h = HashTable(20000)
+        first_key = fake_key()
+        last_key = fake_key()
+        h[first_key] = fake_value()
+        for _ in range(19998):
+            h[fake_key()] = fake_value()
+        h[last_key] = fake_value()
+        # Calculate the average retrieval time for the first key and last key.
+        first_key_value_average_retrieval_time = average_retrieval_time(h, first_key)
+        last_key_value_average_retrieval_time = average_retrieval_time(h, last_key)
     #     # Test that the average retrieval time for both first and last keys
     #     # is about the same.
     #     self.assertAlmostEqual(first_key_value_average_retrieval_time,\
